@@ -19,14 +19,12 @@ const getProjectContent = slug => {
   return matterResult
 }
 
-// export const generateStaticParams = async ({ params }) => {
-//   console.log("here="  + params)
-//   console.log(params)
-//   const posts = getProjectMetaData(params.tech)
-//   return posts.map(post => ({
-//     slug: post.slug
-//   }))
-// }
+export const generateStaticParams = async ({ params }) => {
+  const posts = getProjectMetaData(params.tech)
+  return posts.map(post => ({
+    slug: post.slug
+  }))
+}
 
 
 export async function generateMetadata({ params }) {
