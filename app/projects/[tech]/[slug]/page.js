@@ -20,10 +20,14 @@ const getProjectContent = slug => {
 }
 
 export const generateStaticParams = async ({ params }) => {
-  const posts = getProjectMetaData(params.tech)
-  return posts.map(post => ({
-    slug: post.slug
-  }))
+  // const posts = getProjectMetaData(params.tech)
+  return [
+    {tech: "unity", slug: "cube-coordination"},
+    {tech: "unity", slug: "vr-visualization"},
+  ]
+  // posts.map(post => ({
+  //   slug: post.slug
+  // }))
 }
 
 
