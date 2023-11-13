@@ -1,9 +1,10 @@
 import { Header } from '@/components/header/Header'
 // import '../styles/global.css'
-import './globals.css';
+// import './globals.css';
 import Head from 'next/head';
 import Footer from '@/components/Footer/Footer';
 
+import '../styles/build.css'
 
 export const metadata = {
   title: 'Vishal Jangid | Portfolio',
