@@ -1,17 +1,11 @@
 /** @type {import('next').NextConfig} */
 
-const isGithubActions = process.env.GITHUB_ACTIONS || false
+const isProd = process.env.PROD
 const withMDX = require('@next/mdx')()
 
-let assetPrefix = ""
-let basePath = ""
-
-if (isGithubActions) {
-  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
-
-  assetPrefix = `/${repo}/`
-  basePath = `/${repo}`
-}
+let assetPrefix = isProd ? "/portfolio" : ""
+let basePath = isProd ? "/portfolio" : ""
+  
 const nextConfig = {
     assetPrefix: assetPrefix,
     basePath: basePath,
