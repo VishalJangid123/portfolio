@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const withMDX = require('@next/mdx')()
-const isProd = false;
+const isProd = true;
   
 const nextConfig = {
     assetPrefix: isProd ? "/portfolio" : "",
