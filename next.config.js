@@ -1,14 +1,10 @@
 /** @type {import('next').NextConfig} */
-
-const isProd = process.env.PROD
 const withMDX = require('@next/mdx')()
-
-let assetPrefix = isProd ? "/portfolio" : ""
-let basePath = isProd ? "/portfolio" : ""
+const isProd = false;
   
 const nextConfig = {
-    assetPrefix: assetPrefix,
-    basePath: basePath,
+    assetPrefix: isProd ? "/portfolio" : "",
+    basePath: isProd ? "/portfolio" : "",
     output: 'export',
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
     images: {
