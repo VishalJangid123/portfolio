@@ -13,6 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressContentEditableWarning={true}>
       <head>
+        <meta name="google-site-verification" content="etNh-yQShUhoj5e2NXKovWwkP-j-jWDm2iM2QjVAb58" />
         <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png" />
