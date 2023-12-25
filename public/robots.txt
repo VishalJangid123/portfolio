@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://vishaljangid123.github.io/portfolio
+
+# Sitemaps
+Sitemap: https://vishaljangid123.github.io/portfolio/sitemap.xml
