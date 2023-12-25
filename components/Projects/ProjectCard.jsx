@@ -13,7 +13,7 @@ const ProjectCard = ({item}) => {
     <Image
         width={300}
         height={300}
-        src={item.bannerImage}
+        src={`${process.env.BASEPATH}`+ item.bannerImage}
         alt={item.title}
         className="mb-1 w-fit bg-contain group-hover:bg-cover rounded-lg" />
     <div>
