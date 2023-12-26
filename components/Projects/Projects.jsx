@@ -4,7 +4,18 @@ import ProjectCard from "./ProjectCard";
 
 const Projects = () => {
     const defaultTabValue = "unity";
-    const matter = getProjectMetadata(defaultTabValue);
+    let matter = getProjectMetadata(defaultTabValue);
+    const projectList = [
+        "ImageSwift",
+        "Cube Coordination",
+        "Drop the Box",
+    ]
+    let final = []
+    projectList.forEach(element => {
+        let newIndex = (matter.findIndex(ele => ele.title == element))
+        final.push(matter[newIndex]);
+    });
+    matter = final;
     return (
         <section className="section" id="portfolio">
             <h2 className="head_title">Portfolio</h2>

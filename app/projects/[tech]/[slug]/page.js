@@ -5,11 +5,8 @@ import getProjectMetaData from "@/components/getProjectMetaData"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
-import { CloudFog } from "lucide-react"
-
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
 
 const getProjectContent = slug => {
   const folder = "projects/"
@@ -24,6 +21,8 @@ export const generateStaticParams = async ({ params }) => {
   return [
     {tech: "unity", slug: "cube-coordination"},
     {tech: "unity", slug: "vr-visualization"},
+    {tech: "unity", slug: "imageswift"},
+    {tech: "unity", slug: "drop-the-box"},
   ]
   // posts.map(post => ({
   //   slug: post.slug
@@ -76,9 +75,12 @@ const PostPage = props => {
             {projectDetails.data.social && projectDetails.data.social.map((item, i) => {
               let iconClass = `uil uil-${item.name}`
               return (
-                <Button className="flex flex-row gap-3 rounded uppercase">
+                
+                <Button className="flex flex-row gap-3 rounded uppercase" asChild>
+                  <a href={item.link} target="_blank" rel="noopener noreferrer">
                   <i className={iconClass}></i>
                   {item.name}
+                  </a>
                 </Button>
               )
             })
@@ -112,12 +114,16 @@ const PostPage = props => {
 const CustomImage = ({ urls }) => {
   const allUrls = urls.split(',');
   return (
+    
     <div className="w-full">
-      <Tabs defaultValue="0" className="w-full flex flex-col">
+    {
+      urls  === "" ? <></>
+      :
+      <Tabs defaultValue={allUrls[0]} className="w-full flex flex-col">
         <TabsList className="order-2 sm:flex sm:flex-row">
           {
             allUrls && allUrls.map((item, i) => {
-             return(  <TabsTrigger value={i} key={i} className="p-0  data-[state=active]:m-0 data-[state=active]:rounded-none">
+             return(  <TabsTrigger value={item} key={i}  className="p-0  data-[state=active]:m-0 data-[state=active]:rounded-none">
               <Image src={item} width={100} height={100} className="lg:m-2 sm:m-1"/>
              </TabsTrigger>)
             })
@@ -128,7 +134,7 @@ const CustomImage = ({ urls }) => {
         {
           allUrls && allUrls.map((item, i) => {
             return (
-              <TabsContent value={i} key={i}>
+              <TabsContent value={item} key={i}>
               <Image src={item} width={300} height={300} className="w-full" />
             </TabsContent>
             )
@@ -138,6 +144,8 @@ const CustomImage = ({ urls }) => {
 
       </Tabs>
 
+
+  }
     </div>
   )
 }
