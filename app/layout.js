@@ -3,6 +3,8 @@ import '../styles/global.css'
 import './globals.css';
 import Head from 'next/head';
 import Footer from '@/components/Footer/Footer';
+import Script from "next/script";
+
 
 export const metadata = {
   title: 'Vishal Jangid | Game Developer | Unity Developer | Thailand',
@@ -46,6 +48,22 @@ export default function RootLayout({ children }) {
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
         <link rel='stylesheet' href='https://unicons.iconscout.com/release/v4.0.0/css/line.css' ></link>
         <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet"></link>
+
+        <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
+
+      <Script strategy="lazyOnload">
+        {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                    page_path: window.location.pathname,
+                    });
+                `}
+      </Script>
       </head>
 
       <body suppressContentEditableWarning={true}>
