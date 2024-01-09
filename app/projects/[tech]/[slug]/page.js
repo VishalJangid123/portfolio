@@ -23,6 +23,7 @@ export const generateStaticParams = async ({ params }) => {
     {tech: "unity", slug: "vr-visualization"},
     {tech: "unity", slug: "imageswift"},
     {tech: "unity", slug: "drop-the-box"},
+    {tech: "blog", slug: "gamedevelopment"},
   ]
   // posts.map(post => ({
   //   slug: post.slug
@@ -37,6 +38,8 @@ export async function generateMetadata({ params }) {
   const matterResult = matter(content)
   return {
     title: 'Vishal Jangid | ' + matterResult.data.title,
+    description: matterResult.data.subtitle,
+
   }
 }
 
