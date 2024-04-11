@@ -9,7 +9,7 @@ social: [{ name : "github", link: "gt"}, { name : "youtube", link: "https://www.
 
 Download from Unity Asset Store - [https://assetstore.unity.com/packages/tools/utilities/imageswift-273005](https://assetstore.unity.com/packages/tools/utilities/imageswift-273005)
 
-![ImageSwift - Unity Asset Store - Texture Manipulation](/portfolio/images/ImageSwift_Unity_Asset_SS.png)
+![ImageSwift - Unity Asset Store - Texture Manipulation](/portfolio/Images/ImageSwift_Unity_Asset_SS.png)
 
 
 ImageSwift is a versatile Unity library that simplifies the process of loading and downloading images in Unity projects. It offers an easy-to-use API for handling image operations, including downloading images from URLs, caching, and applying them to Unity UI components.

@@ -20,7 +20,7 @@ Cubed Coordination is a 2D cooperative puzzle platformer built using the Unity g
 
 #### Player
 
-![images/Player](/Images/Cube_coordination_player.png)
+![Cube Coordination | Two Cubes | Player](/portfolio/Images/Cube_coordination_player.png)
 
  <CustomImage urls="" />
 
