@@ -3,7 +3,7 @@ const withMDX = require('@next/mdx')()
 const isProd = true;
   
 const nextConfig = {
-    assetPrefix: isProd ? "/portfolio" : "",
+    
     basePath: isProd ? "/portfolio" : "",
     output: 'export',
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
