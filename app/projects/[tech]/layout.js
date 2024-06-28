@@ -9,6 +9,7 @@ import {
 
 import Link from 'next/link';
 import { navigationMenuTriggerStyle } from '../../../components/ui/navigation-menu';
+import Footer from '@/components/Footer/Footer';
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -20,7 +21,7 @@ export default function RootLayout({ children }) {
       <body>
 
      
-<Header />
+{/* <Header /> */}
         {children}
       </body>
     </html>
@@ -50,6 +51,9 @@ const Header = () => {
   <div className='container sticky top-0 bg-card justify-between items-center sm:block lg:hidden'>
    
   </div>
+
+        
+      
   </>
   )
 }

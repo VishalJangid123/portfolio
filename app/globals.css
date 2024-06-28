@@ -84,7 +84,7 @@
   }
 
   .section{
-    @apply container mx-auto  h-fit flex flex-col pt-24 items-center justify-self-center
+    @apply container mx-auto  h-fit flex flex-col pt-0 items-center justify-self-center
   }
 
   .head_title{
@@ -93,6 +93,10 @@
 
   .head_subtitle{
     @apply text-textColor
+  }
+
+  .hero-text{
+    @apply text-redColor
   }
 
   

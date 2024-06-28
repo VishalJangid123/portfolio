@@ -1,3 +1,4 @@
+
 import fs from "fs"
 import Markdown from "markdown-to-jsx"
 import matter from "gray-matter"
@@ -7,6 +8,7 @@ import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TableOfContent from "@/components/TableOfContent"
 
 const getProjectContent = slug => {
   const folder = "projects/"
@@ -20,9 +22,11 @@ export const generateStaticParams = async ({ params }) => {
   // const posts = getProjectMetaData(params.tech)
   return [
     {tech: "unity", slug: "cube-coordination"},
+    {tech: "unity", slug: "opposites"},
     {tech: "unity", slug: "vr-visualization"},
     {tech: "unity", slug: "imageswift"},
     {tech: "unity", slug: "drop-the-box"},
+    {tech: "unity", slug: "roller-fill"},
     {tech: "blog", slug: "gamedevelopment"},
     {tech: "blog", slug: "how-to-render-image-as-texture-in-unity"},
   ]
@@ -37,6 +41,7 @@ export async function generateMetadata({ params }) {
   const file = `${folder}${params.slug}.md`
   const content = fs.readFileSync(file, "utf8")
   const matterResult = matter(content)
+  
   return {
     title: 'Vishal Jangid | ' + matterResult.data.title,
     description: matterResult.data.subtitle,
@@ -44,56 +49,77 @@ export async function generateMetadata({ params }) {
   }
 }
 
+
+
 const PostPage = props => {
   const techDir = props.params.tech;
   const slug = props.params.slug
   const projectDetails = getProjectContent(techDir + "/" + slug)
-
+  const headings = projectDetails.content
+  .replaceAll(/```(.|\n)+```/gm, "")
+  .split("\n")
+  .filter(line => line.startsWith("#"))
   
+ 
+
+
   return (
-    <div className="container mx-auto flex flex-col items-center justify-center ">
+     <div>
+     
 
-      {/* <div className="w-full relative">
-        <Image src="/Images/VR_V_unity_s1.png" width={300} height={300} className="w-full blur"/>
-      </div> */}
-
-      <div className="w-full">
-
-
-
-
-        <div className="my-12 bg-card w-full p-10 rounded-2xl flex flex-col gap-y-2">
-          <h1 className="text-2xl text-slate-600 ">{projectDetails.data.title}</h1>
-          <p className="text-slate-400 mt-2">{projectDetails.data.date}</p>
-          <div className="">
-            {
-              projectDetails.data.tags.map((item, i) => {
-                return (
-                  <Badge>{item}</Badge>
-                )
-              })
-            }
-          </div>
-          <p>Visit project on: </p>
-          <div className="flex flex-row gap-5 ">
-            {projectDetails.data.social && projectDetails.data.social.map((item, i) => {
-              let iconClass = `uil uil-${item.name}`
+<div
+  className={"relative overflow-hidden rounded-lg bg-cover bg-no-repeat p-12 text-center"}
+  >
+    <Image alt="Banner" src={"/portfolio/" + projectDetails.data.bannerImage} className="w-full bg-cover blur-sm bg-blend-screen bg-transparent" width={100} height={100}/>
+  <div
+    className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed bg-current"
+    >
+    <div className="flex h-full items-center justify-center">
+    <div className="my-12 bg-card w-full p-10 rounded-2xl flex flex-col gap-y-2 items-center">
+        <h1 className="text-4xl text-slate-600 ">{projectDetails.data.title}</h1>
+        <p className="text-slate-400 mt-2">{projectDetails.data.date}</p>
+        <div className="">
+          {
+            projectDetails.data.tags.map((item, i) => {
               return (
-                
-                <Button className="flex flex-row gap-3 rounded uppercase" asChild>
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                  <i className={iconClass}></i>
-                  {item.name}
-                  </a>
-                </Button>
+                <Badge key={i}>{item}</Badge>
               )
             })
-            }
-          </div>
-
+          }
+        </div>
+        <div className="flex flex-row gap-5 ">
+          {projectDetails.data.social && projectDetails.data.social.map((item, i) => {
+            let iconClass = `uil uil-${item.name}`
+            return (
+              
+              <Button key={i} className="rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70" asChild>
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                <i className={iconClass + " text-xl"}></i>
+                </a>
+              </Button>
+            )
+          })
+          }
         </div>
 
-        <article className="container mx-auto prose lg:prose-xl max-w-none bg-card p-10 w-full">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+     
+    <div className="container mx-auto flex flex-row justify-between">
+
+<div className="sm:hidden lg:w-1/4 bg-card p-10 pl-5 h-fit sticky top-20">
+<TableOfContent  headings={headings}/>
+
+</div>
+<div className="lg:w-2/3 sm:w-full">
+
+
+        <article className="container mx-auto prose lg:prose-xl max-w-none bg-card lg:p-10 sm:p-5">
+          
           <Markdown
             options={{
               overrides: {
@@ -103,15 +129,23 @@ const PostPage = props => {
                     className: 'bg-title'
                   }
                 },
+                p:{
+                  props:{
+                    className: 'text-base'
+                  }
+                },
                 CustomImage
               }
             }}
 
           >{projectDetails.content}</Markdown>
         </article>
-      </div>
+</div>
 
+      </div>
     </div>
+
+
   )
 }
 

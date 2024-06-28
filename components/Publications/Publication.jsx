@@ -2,9 +2,9 @@ import React from 'react';
 const Publication = () => {
   return (
     <section className="section" id="publication">
-    <h2 className="head_title">Published Articles</h2>
+    {/* <h2 className="head_title">Published Articles</h2>
     <span className="head_subtitle">My published research articles</span>
-    
+     */}
     <div className="container mx-auto mt-16 mb-16 items-center flex justify-center">
         <div className='lg:w-full sm:w-80'>
             <a href='https://doi.org/10.1145/3489849.3489915' target="_blank" rel="noopener noreferrer" >

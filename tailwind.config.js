@@ -5,12 +5,15 @@ module.exports = {
     './pages/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
+    './mdx-components.jsx',
+    './projects/unity/*.md',
     './src/**/*.{js,jsx}',
 	],
   theme: {
     colors: {
       title: "hsl(0 0% 20%)",
       textColor: "#545454",
+      redColor: "#FF2D00"
     },
     container: {
       center: true,
