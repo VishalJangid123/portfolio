@@ -9,6 +9,7 @@ const Projects = () => {
     const projectList = [
         "ImageSwift",
         "Opposites",
+        "Traffic Tango",
         "Roller Fill",
         "Drop the Box",
         "VR Visualization of a Thai Historic temple"

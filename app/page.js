@@ -44,7 +44,10 @@ export default function Home() {
                         <Publication />
                     </TabsContent>
                 </Tabs>
+
             </div>
+     <Skills />
+
      {/* <Projects /> */}
           {/* <About />
      <Skills />
@@ -52,7 +55,7 @@ export default function Home() {
         <Publication />  */}
        {/* <Qualification />  */}
       {/* <Github />  */}
-      {/*<Contact /> */ } 
+      {/* <Contact /> */ } 
     </main>
   )
 }

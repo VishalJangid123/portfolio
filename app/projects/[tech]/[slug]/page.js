@@ -26,6 +26,7 @@ export const generateStaticParams = async ({ params }) => {
     {tech: "unity", slug: "vr-visualization"},
     {tech: "unity", slug: "imageswift"},
     {tech: "unity", slug: "drop-the-box"},
+    {tech: "unity", slug: "traffic-tango"},
     {tech: "unity", slug: "roller-fill"},
     {tech: "blog", slug: "gamedevelopment"},
     {tech: "blog", slug: "how-to-render-image-as-texture-in-unity"},
