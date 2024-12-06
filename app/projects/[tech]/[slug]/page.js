@@ -69,9 +69,9 @@ const PostPage = props => {
      
 
 <div
-  className={"relative overflow-hidden rounded-lg bg-cover bg-no-repeat p-12 text-center"}
+  className={"container relative overflow-hidden rounded-lg bg-cover bg-no-repeat p-12 text-center"}
   >
-    <Image alt="Banner" src={"/portfolio/" + projectDetails.data.bannerImage} className="w-full bg-cover blur-sm bg-blend-screen bg-transparent" width={100} height={100}/>
+    <Image alt="Banner" src={"/portfolio/" + projectDetails.data.bannerImage} className="container bg-cover blur-sm bg-blend-screen bg-transparent" width={100} height={100}/>
   <div
     className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed bg-current"
     >
@@ -110,16 +110,16 @@ const PostPage = props => {
 
 
      
-    <div className="container mx-auto flex flex-row justify-between">
+    <div className="container mx-auto flex flex-row justify-center">
 
-<div className="sm:hidden lg:w-1/4 bg-card p-10 pl-5 h-fit sticky top-20">
+{/* <div className="sm:hidden lg:w-1/4 bg-card p-10 pl-5 h-fit sticky top-20">
 <TableOfContent  headings={headings}/>
 
-</div>
+</div> */}
 <div className="lg:w-2/3 sm:w-full">
 
 
-        <article className="container mx-auto prose lg:prose-xl max-w-none bg-card lg:p-10 sm:p-5">
+        <article className="container prose lg:prose-xl max-w-none bg-card lg:p-10 sm:p-5 flex justify-center items-center">
           
           <Markdown
             options={{
