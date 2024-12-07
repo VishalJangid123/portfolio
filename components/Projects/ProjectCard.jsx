@@ -34,7 +34,7 @@ const ProjectCard = ({ item }) => {
         </div>
       </div>
       <div className="p-6 pt-3">
-      <a target="_blank" href={"portfolio/projects/unity/" + item.slug} rel="noopener noreferrer" >
+      <a target="_blank" href={`${process.env.BASEPATH}` + "/projects/unity/" + item.slug} rel="noopener noreferrer" >
         <Button
           type="button"
           variant='default'
