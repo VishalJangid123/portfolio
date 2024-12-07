@@ -1,17 +1,17 @@
 import React from "react";
-import { database_data } from "./data";
+import { frontend } from "./data";
 
-function Database() {
+function FrontendDevelopment() {
   return (
     <div className="bg-card px-8 py-8 rounded-3xl">
       <h3 className="text-base flex justify-center items-center mb-8">
-        Database & Cloud{" "}
+        Frontend Development
       </h3>
 
       <div className="skills__box">
         <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-3">
-          {database_data &&
-            database_data.map((data, index) => {
+          {frontend &&
+            frontend.map((data, index) => {
               return (
                 <div
                   className="flex flex-row gap-2 lg:w-80 sm:w-64"
@@ -31,4 +31,4 @@ function Database() {
   );
 }
 
-export default Database;
+export default FrontendDevelopment;

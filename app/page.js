@@ -39,7 +39,7 @@ export default function Home() {
                         })} */}
                     </TabsContent>
                     <TabsContent value="research" className="h-fit  grid 
-                     lg:container  lg:grid-cols-3 gap-4  sm:grid-cols-1 
+                     lg:container  lg:grid-cols-1 gap-4  sm:grid-cols-1 
                     sm:place-content-center sm:place-items-center">
                         <Publication />
                     </TabsContent>

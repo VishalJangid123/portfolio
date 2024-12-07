@@ -5,8 +5,8 @@ const Publication = () => {
     {/* <h2 className="head_title">Published Articles</h2>
     <span className="head_subtitle">My published research articles</span>
      */}
-    <div className="container mx-auto mt-16 mb-16 items-center flex justify-center">
-        <div className='lg:w-full sm:w-80'>
+    <div className="container lg:mt-16 lg:mb-16 sm:mb-10 items-center flex justify-center">
+        <div className='lg:w-full sm:w-96'>
             <a href='https://doi.org/10.1145/3489849.3489915' target="_blank" rel="noopener noreferrer" >
             <div className='bg-card p-8 rounded-2xl flex flex-col'>
             

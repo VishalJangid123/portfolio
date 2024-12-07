@@ -20,9 +20,9 @@ const ProjectCard = ({ item }) => {
             {item.title}
           </h5>
         </div>
-        <p className="block font-sans text-base antialiased font-light leading-relaxed text-gray-700 ">
+        <div className="block font-sans text-base antialiased font-light leading-relaxed text-gray-700 ">
           <p className="line-clamp-2">{item.subtitle}</p>
-        </p>
+        </div>
         <div className="inline-flex flex-wrap items-center gap-1 mt-8 group max-h-5">
           {item &&
             item.tags &&
