@@ -3,14 +3,14 @@ import { Button } from "../ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
-const ProjectCard = ({ item }) => {
+const ProjectCard = ({ item, tech }) => {
   return (
     <div className="relative flex w-full min-h-[35rem] max-w-[26rem] flex-col rounded-xl bg-white  text-gray-700 shadow hover:shadow-lg">
       <div className="relative mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500  shadow-blue-gray-500/40">
         <img
           className="object-fill w-full h-64"
           src={`${process.env.BASEPATH}` + item.bannerImage}
-          alt="ui/ux review check"
+          alt={item.title}
         />
         <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60"></div>
       </div>
@@ -34,14 +34,16 @@ const ProjectCard = ({ item }) => {
         </div>
       </div>
       <div className="p-6 pt-3">
-      <a target="_blank" href={`${process.env.BASEPATH}` + "/projects/unity/" + item.slug} rel="noopener noreferrer" >
+      {/* <Link href={`${process.env.BASEPATH}` + "/projects/unity/" + item.slug} rel="noopener noreferrer" > */}
         <Button
           type="button"
           variant='default'
+          asChild
         >
+      <Link href={"/projects/" + tech + "/" + item.slug} >
           View More Details
+        </Link>
         </Button>
-        </a>
       </div>
     </div>
   );
