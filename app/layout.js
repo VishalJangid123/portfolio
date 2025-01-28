@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressContentEditableWarning={true}>
+    <html lang="en" suppressContentEditableWarning={true} class="notranslate" translate="no">
       <head>
         <meta name="google-site-verification" content="etNh-yQShUhoj5e2NXKovWwkP-j-jWDm2iM2QjVAb58" />
         <link rel="apple-touch-icon" sizes="57x57" href="/portfolio/icons/apple-icon-57x57.png" />
