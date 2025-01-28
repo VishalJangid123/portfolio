@@ -2,11 +2,10 @@
 title: "Opposites"
 subtitle: "A unique cooperative puzzle platformer that will test your coordination"
 date: "October 24th 2023"
-tags: ["Unity", "2D", "1-bit", "game-jam"]
+tags: ["Unity", "C#", "2D", "1-bit", "game-jam"]
 bannerImage: "/Images/Opposite_level_4.png"
 social: [{ name : "github", link: "https://github.com/VishalJangid123/cube-coordination"}, ]
 ---
-# Opposite: A Unique 2D Puzzle-Platformer
 
 [https://itch.io/embed/2372151](https://itch.io/embed/2372151)
 
@@ -89,11 +88,9 @@ The final levels combine platforms, spikes, portals, and the winning area to tes
 Minimalist black-and-white visuals that not only look cool but also serve the gameplay.
 
 **Images:**
-
-<img  src="/portfolio/Images/Opposite_level_1.png">
-<img  src="/portfolio/Images/Opposite_level_2.png">
-<img  src="/portfolio/Images/Opposite_level_3.png">
-<img  src="/portfolio/Images/Opposite_level_4.png">
+|------|-----|
+| <img  src="/portfolio/Images/Opposite_level_1.png"> |<img  src="/portfolio/Images/Opposite_level_2.png"> |
+| <img  src="/portfolio/Images/Opposite_level_3.png"> | <img  src="/portfolio/Images/Opposite_level_4.png">|
 
 
 ---
