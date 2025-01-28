@@ -30,7 +30,7 @@ export const Header = () => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="#home" legacyBehavior passHref>
+              <Link href="/#home" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Home
                 </NavigationMenuLink>
@@ -38,7 +38,7 @@ export const Header = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href="#about" legacyBehavior passHref>
+              <Link href="/#about" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   About
                 </NavigationMenuLink>
@@ -46,7 +46,7 @@ export const Header = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href="#skills" legacyBehavior passHref>
+              <Link href="/#skills" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Skills
                 </NavigationMenuLink>
@@ -54,7 +54,7 @@ export const Header = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href="#portfolio" legacyBehavior passHref>
+              <Link href="/#portfolio" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Portfolio
                 </NavigationMenuLink>
@@ -62,14 +62,14 @@ export const Header = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href="#github" legacyBehavior passHref>
+              <Link href="/#github" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Github
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="#publications" legacyBehavior passHref>
+              <Link href="/#publications" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Publications
                 </NavigationMenuLink>
