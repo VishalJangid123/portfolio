@@ -4,6 +4,7 @@ subtitle: "The app suggests books based on user interests by analyzing similarit
 date: "Jan 22, 2025"
 tags: ["Machine Learning", "Streamlit", "Pandas", "Scikit-learn"]
 bannerImage: "/Images/BookRecommender.png"
+build_platform: {name : "Web App", icon: "desktop"}
 social: [{ name : "github", link: "https://github.com/VishalJangid123/DropTheBox?portfolio"}]
 ---
 # Book Recommender System using ML
