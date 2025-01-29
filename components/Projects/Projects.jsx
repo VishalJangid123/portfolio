@@ -38,7 +38,7 @@ const Projects = () => {
           <TabsList>
             <TabsTrigger value="game_development">Game Development</TabsTrigger>
             <TabsTrigger value="full_stack">Full Stack Development</TabsTrigger>
-            <TabsTrigger value="ai">AI</TabsTrigger>
+            <TabsTrigger value="ai">GenAI / AI / ML</TabsTrigger>
           </TabsList>
 
           <TabsContent value="game_development" className="">
