@@ -27,7 +27,7 @@ const ProjectCard = ({ item, tech }) => {
         <div className="block font-sans text-base antialiased font-light leading-relaxed text-gray-700 ">
           <p className="line-clamp-2">{item.subtitle}</p>
         </div>
-        <div className="inline-flex flex-wrap items-center gap-1 mt-8 group max-h-5">
+        <div className="inline-flex flex-wrap items-center gap-1 mt-8 mb-6 group max-h-5">
           {item &&
             item.tags &&
             item.tags.map((tag, i) => (
@@ -41,7 +41,7 @@ const ProjectCard = ({ item, tech }) => {
         {/* <Link href={`${process.env.BASEPATH}` + "/projects/unity/" + item.slug} rel="noopener noreferrer" > */}
         <Button type="button" variant="default" asChild>
           <Link href={"/projects/" + tech + "/" + item.slug}>
-            View More Details
+            View More Details  <i className="uil uil-arrow-right text-xl"  ></i>
           </Link>
         </Button>
       </div>
