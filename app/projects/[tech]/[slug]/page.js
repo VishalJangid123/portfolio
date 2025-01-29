@@ -29,10 +29,14 @@ export const generateStaticParams = async ({ params }) => {
     { tech: "game_development", slug: "roller-fill" },
     { tech: "blog", slug: "gamedevelopment" },
     { tech: "blog", slug: "how-to-render-image-as-texture-in-unity" },
+
+
+    { tech: "full_stack", slug: "GoWhere" },
+    { tech: "full_stack", slug: "CardManagementApp" },
+
+    { tech: "ai", slug: "BookRecommender" },
   ];
-  // posts.map(post => ({
-  //   slug: post.slug
-  // }))
+  
 };
 
 export async function generateMetadata({ params }) {
@@ -109,13 +113,16 @@ const PostPage = (props) => {
         </div>
       </div>
 
-  <Image
-          alt="Banner"
-          src={"/portfolio/" + projectDetails.data.bannerImage}
-          className="container bg-cover rounded"
-          width={100}
-          height={100}
-        /> 
+  {
+    projectDetails.data.bannerImage && <Image
+    alt="Banner"
+    src={"/portfolio/" + projectDetails.data.bannerImage}
+    className="container bg-cover rounded"
+    width={100}
+    height={100}
+  /> 
+  }
+  
 
       <div className="container mx-auto flex flex-row justify-center">
         {/* <div className="sm:hidden lg:w-1/4 bg-card p-10 pl-5 h-fit sticky top-20">

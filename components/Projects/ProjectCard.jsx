@@ -12,7 +12,11 @@ const ProjectCard = ({ item, tech }) => {
           src={`${process.env.BASEPATH}` + item.bannerImage}
           alt={item.title}
         />
-        <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60"></div>
+        { item.build_platform && (
+          <span class="absolute top-3 right-3 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+            <i className={`uil uil-${item.build_platform.icon}`}></i> {item.build_platform.name}
+          </span>
+        )}
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
@@ -34,15 +38,11 @@ const ProjectCard = ({ item, tech }) => {
         </div>
       </div>
       <div className="p-6 pt-3">
-      {/* <Link href={`${process.env.BASEPATH}` + "/projects/unity/" + item.slug} rel="noopener noreferrer" > */}
-        <Button
-          type="button"
-          variant='default'
-          asChild
-        >
-      <Link href={"/projects/" + tech + "/" + item.slug} >
-          View More Details
-        </Link>
+        {/* <Link href={`${process.env.BASEPATH}` + "/projects/unity/" + item.slug} rel="noopener noreferrer" > */}
+        <Button type="button" variant="default" asChild>
+          <Link href={"/projects/" + tech + "/" + item.slug}>
+            View More Details
+          </Link>
         </Button>
       </div>
     </div>

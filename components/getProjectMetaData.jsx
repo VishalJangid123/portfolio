@@ -18,6 +18,7 @@ const getProjectMetadata = (dir) => {
       subtitle: matterResult.data.subtitle,
       slug: fileName.replace(".md", ""),
       tags: matterResult.data.tags,
+      build_platform: matterResult.data.build_platform,
       bannerImage: matterResult.data.bannerImage,
     };
   });
