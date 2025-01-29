@@ -33,8 +33,12 @@ export const generateStaticParams = async ({ params }) => {
 
     { tech: "full_stack", slug: "GoWhere" },
     { tech: "full_stack", slug: "CardManagementApp" },
+    { tech: "full_stack", slug: "ObjectDetection" },
+    { tech: "full_stack", slug: "FaceLandmarkDetection" },
 
     { tech: "ai", slug: "BookRecommender" },
+    { tech: "ai", slug: "YieldPrediction" },
+    { tech: "ai", slug: "jobemailgenerator" },
   ];
   
 };
