@@ -17,6 +17,7 @@ export default function Home() {
       <div className="flex justify-center mt-16 h-fit">
         <Projects />
       </div>
+      <Publication />
       <Skills />
     </main>
   );
