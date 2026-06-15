@@ -23,7 +23,7 @@
 }
 
 .contact__card{
-    background-color: var(--container-color);
+    background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 1rem;
     border-radius: 0.75rem;

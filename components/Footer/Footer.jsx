@@ -1,52 +1,71 @@
 import React from 'react'
+import { ArrowUp } from 'lucide-react'
+
+const navLinks = [
+  { label: "About", href: "/#about" },
+  { label: "Work", href: "/#portfolio" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Research", href: "/#publications" },
+  { label: "Contact", href: "/#contact" },
+];
+
+const socials = [
+  { href: "https://github.com/VishalJangid123", icon: "uil uil-github-alt", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/vishal-jangid-879b85108/", icon: "uil uil-linkedin-alt", label: "LinkedIn" },
+  { href: "https://line.me/ti/p/54ecpXAs48", icon: "uil uil-line", label: "Line" },
+];
 
 const Footer = () => {
   return (
-   <footer className="bg-card">
-    <div className=" flex flex-col justify-center items-center gap-5 mt-4">
-        <h1 className="text-xl font-semibold mt-4">Vishal Jangid</h1>
+    <footer className="mt-10 border-t border-line">
+      <div className="mx-auto w-full max-w-6xl px-6 py-14 md:px-10">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+          <div className="max-w-sm">
+            <p className="font-display text-2xl font-medium text-ink">Vishal Jangid</p>
+            <p className="mt-3 text-sm leading-relaxed text-inkSoft">
+              Unity game developer & full-stack engineer based in Bangkok, Thailand.
+              Always happy to talk about games, the web, and everything in between.
+            </p>
+          </div>
 
-        <ul className="flex flex-row gap-4">
-            <li>
-                <a href="#about" className="footer__link">About</a>
-            </li>
-
-            <li>
-                <a href="#portfolio" className="footer__link">Projects</a>
-            </li>
-
-            <li>
-                <a href="#contact" className="footer__link">Contact</a>
-            </li>
-        </ul>
-
-        <div className="flex flex-row gap-8">
-        <a href="https://github.com/VishalJangid123" rel="noreferrer" className="footer__social-link" target="_blank" aria-label='VishalJangid123'>
-        <i className="uil uil-github-alt"></i>
-        </a>
-
-        <a href="https://www.linkedin.com/in/vishal-jangid-879b85108/" rel="noreferrer" className="footer__social-link" target="_blank" aria-label='vishal-jangid-879b85108'>
-        <i className="uil uil-linkedin-alt"></i>
-            </a>
-
-            <a href="https://www.instagram.com/quantum_free_particle/" rel="noreferrer"  className="footer__social-link" target="_blank" aria-label='quantum_free_particle'>
-            <i className="bx bxl-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/vishal.jangid123" rel="noreferrer" className="footer__social-link" target="_blank" aria-label='vishal.jangid123'>
-        <i className="bx bxl-facebook" color="#fff"></i>
-        </a>
-
-        <a href="https://line.me/ti/p/54ecpXAs48" rel="noreferrer" className="footer__social-link" target="_blank"  aria-label='line'>
-        <i className="uil uil-line"></i>
-        </a>
-        
-
+          <nav className="flex flex-col gap-2.5">
+            {navLinks.map((l) => (
+              <a key={l.label} href={l.href} className="link-underline w-fit text-sm">
+                {l.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
+        <div className="mt-12 flex flex-col-reverse items-start gap-6 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-inkSoft">
+            © {new Date().getFullYear()} Vishal Jangid. All rights reserved.
+          </p>
 
-        <span className="text-xs text-textColor">Last updated: 8 Dec 2022 | Views:<div id="visit__footer"></div>  </span>
-    </div>
-   </footer>
+          <div className="flex items-center gap-2">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={s.label}
+                className="grid h-9 w-9 place-items-center rounded-full border border-line text-inkSoft transition-colors hover:border-ink hover:text-ink"
+              >
+                <i className={s.icon}></i>
+              </a>
+            ))}
+            <a
+              href="#home"
+              aria-label="Back to top"
+              className="ml-1 grid h-9 w-9 place-items-center rounded-full bg-ink text-paper transition-colors hover:bg-brand"
+            >
+              <ArrowUp size={16} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   )
 }
 

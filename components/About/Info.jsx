@@ -1,29 +1,22 @@
 import React from 'react'
 
+const stats = [
+  { value: "M.Eng", label: "Computer Engineering" },
+  { value: "6", label: "Engineering domains" },
+  { value: "3", label: "Peer-reviewed papers" },
+];
+
 export const Info = () => {
-  const card = `lg:w-36 bg-white rounded-md 
-  lg:px-4 lg:py-5 border border-lightBorder flex flex-col items-center justify-self-center gap-y-1
-  sm:px-3 sm:py-2 sm:w-28`
   return (
-    <div className="grid grid-flow-col auto-cols-max gap-x-4">
-        <div className={card}>
-            <i className="bx bx-award"></i>
-            <h3 className="text-base font-medium text-title">Experience</h3>
-            <span className="text-xs text-textColor">1+ year</span>
+    <div className="grid grid-cols-3 divide-x divide-line border-y border-line">
+      {stats.map((s) => (
+        <div key={s.label} className="px-3 py-5 first:pl-0">
+          <p className="font-display text-3xl font-medium leading-none text-ink md:text-4xl">
+            {s.value}
+          </p>
+          <p className="mt-2 text-xs leading-snug text-inkSoft">{s.label}</p>
         </div>
-
-        <div className={card}>
-            <i className="bx bx-award"></i>
-            <h3 className="text-base font-medium text-title">Education</h3>
-            <span className="text-xs text-textColor">M.Eng</span>
-        </div>
-
-        <div className={card}>
-            <i className="bx bx-award"></i>
-            <h3 className="text-base font-medium text-title">Support</h3>
-            <span className="text-xs text-textColor">24/5</span>
-        </div>
+      ))}
     </div>
   )
 }
- 

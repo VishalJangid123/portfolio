@@ -1,51 +1,61 @@
-import Image from "next/image";
-import { Button } from "../ui/button";
-import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { ArrowUpRight, Trophy } from "lucide-react";
 
 const ProjectCard = ({ item, tech }) => {
   return (
-    <div className="relative flex w-full min-h-[35rem] max-w-[26rem] flex-col rounded-xl bg-white  text-gray-700 shadow hover:shadow-lg">
-      <div className="relative mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500  shadow-blue-gray-500/40">
+    <Link
+      href={"/projects/" + tech + "/" + item.slug}
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-ink hover:shadow-[0_18px_40px_-24px_rgba(27,26,23,0.45)]"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden">
         <img
-          className="object-fill w-full h-64"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           src={`${process.env.BASEPATH}` + item.bannerImage}
           alt={item.title}
         />
-        { item.build_platform && (
-          <span class="absolute top-3 right-3 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-            <i className={`uil uil-${item.build_platform.icon}`}></i> {item.build_platform.name}
+        {item.build_platform && (
+          <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-ink/85 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-paper backdrop-blur-sm">
+            <i className={`uil uil-${item.build_platform.icon}`}></i>
+            {item.build_platform.name}
           </span>
         )}
       </div>
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-3">
-          <h5 className="block font-sans text-xl antialiased font-medium leading-snug tracking-normal text-blue-gray-900">
+
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="font-display text-xl font-medium leading-snug text-ink">
             {item.title}
-          </h5>
+          </h3>
+          <span className="mt-1 shrink-0 text-inkSoft transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand">
+            <ArrowUpRight size={20} />
+          </span>
         </div>
-        <div className="block font-sans text-base antialiased font-light leading-relaxed text-gray-700 ">
-          <p className="line-clamp-2">{item.subtitle}</p>
-        </div>
-        <div className="inline-flex flex-wrap items-center gap-1 mt-8 mb-6 group max-h-5">
-          {item &&
-            item.tags &&
-            item.tags.map((tag, i) => (
-              <Badge key={i} variant="outline">
+
+        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-inkSoft">
+          {item.subtitle}
+        </p>
+
+        {item.highlight && (
+          <p className="mt-4 inline-flex items-center gap-1.5 self-start rounded-full bg-[rgba(216,58,23,0.10)] px-3 py-1 font-mono text-[11px] font-medium text-brand">
+            <Trophy size={12} />
+            {item.highlight}
+          </p>
+        )}
+
+        {item?.tags?.length > 0 && (
+          <div className="mt-auto flex flex-wrap gap-1.5 pt-6">
+            {item.tags.slice(0, 4).map((tag, i) => (
+              <span
+                key={i}
+                className="rounded-full border border-line px-2.5 py-1 font-mono text-[11px] text-inkSoft"
+              >
                 {tag}
-              </Badge>
+              </span>
             ))}
-        </div>
+          </div>
+        )}
       </div>
-      <div className="p-6 pt-3">
-        {/* <Link href={`${process.env.BASEPATH}` + "/projects/unity/" + item.slug} rel="noopener noreferrer" > */}
-        <Button type="button" variant="default" asChild>
-          <Link href={"/projects/" + tech + "/" + item.slug}>
-            View More Details  <i className="uil uil-arrow-right text-xl"  ></i>
-          </Link>
-        </Button>
-      </div>
-    </div>
+    </Link>
   );
 };
 

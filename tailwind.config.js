@@ -11,9 +11,13 @@ module.exports = {
 	],
   theme: {
     colors: {
-      title: "hsl(0 0% 20%)",
-      textColor: "#545454",
-      redColor: "#FF2D00"
+      transparent: "transparent",
+      current: "currentColor",
+      white: "#ffffff",
+      black: "#000000",
+      title: "var(--ink)",
+      textColor: "var(--ink-soft)",
+      redColor: "var(--brand)",
     },
     container: {
       center: true,
@@ -40,7 +44,15 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        white: "hsl(var(--container-color))",
+        paper: "var(--paper)",
+        surface: "var(--surface)",
+        ink: "var(--ink)",
+        inkSoft: "var(--ink-soft)",
+        line: "var(--line)",
+        brand: {
+          DEFAULT: "var(--brand)",
+          foreground: "var(--brand-ink)",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -88,15 +100,23 @@ module.exports = {
           '0%' : { "border-radius": "60% 40% 30% 70%/60% 30% 70% 40%" },
           '50%' : { "border-radius": "30% 60% 70% 40%/50% 60% 30% 60%" },
           '100%' :{ "border-radius ": "60% 40% 30% 70%/60% 30% 70% 40%"}
-        }
+        },
+        "fade-up": {
+          from: { opacity: 0, transform: "translateY(16px)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "profileImage" : "profile-anim 8s ease-in-out 1s infinite"
+        "profileImage" : "profile-anim 8s ease-in-out 1s infinite",
+        "fade-up": "fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both",
       },
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif']
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'Georgia', 'serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        poppins: ['var(--font-sans)', 'sans-serif'],
       },
     },
   },

@@ -20,6 +20,7 @@ const getProjectMetadata = (dir) => {
       tags: matterResult.data.tags,
       build_platform: matterResult.data.build_platform,
       bannerImage: matterResult.data.bannerImage,
+      highlight: matterResult.data.highlight || null,
     };
   });
 

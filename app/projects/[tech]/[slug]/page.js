@@ -1,24 +1,14 @@
 import fs from "fs";
-import Markdown from "markdown-to-jsx";
 import matter from "gray-matter";
-import getProjectMetaData from "@/components/getProjectMetaData";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
-
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import TableOfContent from "@/components/TableOfContent";
+import ProjectDetail from "@/components/Projects/ProjectDetail";
 
 const getProjectContent = (slug) => {
-  const folder = "projects/";
-  const file = `${folder}${slug}.md`;
+  const file = `projects/${slug}.md`;
   const content = fs.readFileSync(file, "utf8");
-  const matterResult = matter(content);
-  return matterResult;
+  return matter(content);
 };
 
-export const generateStaticParams = async ({ params }) => {
-  // const posts = getProjectMetaData(params.tech)
+export const generateStaticParams = async () => {
   return [
     { tech: "game_development", slug: "cube-coordination" },
     { tech: "game_development", slug: "opposites" },
@@ -30,7 +20,6 @@ export const generateStaticParams = async ({ params }) => {
     { tech: "blog", slug: "gamedevelopment" },
     { tech: "blog", slug: "how-to-render-image-as-texture-in-unity" },
 
-
     { tech: "full_stack", slug: "GoWhere" },
     { tech: "full_stack", slug: "CardManagementApp" },
     { tech: "full_stack", slug: "ObjectDetection" },
@@ -40,173 +29,123 @@ export const generateStaticParams = async ({ params }) => {
     { tech: "ai", slug: "YieldPrediction" },
     { tech: "ai", slug: "jobemailgenerator" },
   ];
-  
 };
 
 export async function generateMetadata({ params }) {
-  const folder = "projects/" + params.tech + "/";
-  const file = `${folder}${params.slug}.md`;
-  const content = fs.readFileSync(file, "utf8");
-  const matterResult = matter(content);
-
+  const file = `projects/${params.tech}/${params.slug}.md`;
+  const matterResult = matter(fs.readFileSync(file, "utf8"));
   return {
     title: "Vishal Jangid | " + matterResult.data.title,
     description: matterResult.data.subtitle,
   };
 }
 
-const PostPage = (props) => {
-  const techDir = props.params.tech;
-  const slug = props.params.slug;
-  const projectDetails = getProjectContent(techDir + "/" + slug);
-  const headings = projectDetails.content
-    .replaceAll(/```(.|\n)+```/gm, "")
-    .split("\n")
-    .filter((line) => line.startsWith("#"));
+/* Normalize an image/asset path to the deployed basePath */
+function normSrc(src) {
+  if (!src) return src;
+  const s = src.trim();
+  if (/^https?:\/\//.test(s)) return s;
+  if (s.startsWith("/portfolio/")) return s;
+  if (s.startsWith("/")) return "/portfolio" + s;
+  return s;
+}
 
-  return (
-    <div>
-      <div
-        className={
-          "container relative overflow-hidden rounded-lg bg-cover bg-no-repeat p-12"
-        }
-      >
-       
-        <div className="flex h-full">
-          <div className="my-12 bg-card w-full p-10 rounded-2xl flex flex-col gap-y-2">
-            <h1 className="text-3xl text-slate-600 ">
-              {projectDetails.data.title}
-            </h1>
-            <div>{projectDetails.data.subtitle}</div>
-            <div className="font-medium text-slate-400 mt-2">
-              {projectDetails.data.date}
-            </div>
-            <div className="mt-2 flex flex-row gap-5 ">
-              {projectDetails.data.social &&
-                projectDetails.data.social.map((item, i) => {
-                  let iconClass = `uil uil-${item.name}`;
-                  return (
-                    <Button key={i} asChild
-                    className="py-2 px-4 h-10 justify-center items-center gap-2">
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className=""
-                      >
-                        <div className="capitalize">{item.name}</div>
-                        <i className="uil uil-arrow-up-right"></i>
-                      </a>
-                    </Button>
-                  );
-                })}
-            </div>
-            
-            
-            <div className="mt-2 flex flex-wrap gap-2">
-              {projectDetails.data.tags.map((item, i) => {
-                return (
-                  <Badge variant="secondary" key={i}>
-                    {item}
-                  </Badge>
-                );
-              })}
-            </div>
-           
-          </div>
-        </div>
-      </div>
+/* Pull screenshots + video/iframe embeds out of the markdown, returning
+   the cleaned text body plus the collected media. */
+function extractMedia(md) {
+  const images = [];
+  const embeds = [];
+  let body = md;
 
-  {
-    projectDetails.data.bannerImage && <Image
-    alt="Banner"
-    src={"/portfolio/" + projectDetails.data.bannerImage}
-    className="container bg-cover rounded"
-    width={100}
-    height={100}
-  /> 
-  }
-  
+  body = body.replace(/<iframe[\s\S]*?<\/iframe>/gi, (m) => {
+    embeds.push(m);
+    return "";
+  });
 
-      <div className="container mx-auto flex flex-row justify-center">
-        {/* <div className="sm:hidden lg:w-1/4 bg-card p-10 pl-5 h-fit sticky top-20">
-<TableOfContent  headings={headings}/>
-
-</div> */}
-        <div className="sm:w-full">
-          <article className="container prose lg:prose-xl max-w-none bg-card lg:p-10 sm:p-5 flex justify-center items-center">
-            <Markdown
-              options={{
-                overrides: {
-                  Button: {
-                    component: Button,
-                    props: {
-                      className: "bg-title",
-                    },
-                  },
-                  p: {
-                    props: {
-                      className: "text-base",
-                    },
-                  },
-                  CustomImage,
-                },
-              }}
-            >
-              {projectDetails.content}
-            </Markdown>
-          </article>
-        </div>
-      </div>
-    </div>
+  body = body.replace(
+    /<CustomImage\s+urls=["']([^"']*)["']\s*\/?>(?:\s*<\/CustomImage>)?/gi,
+    (_m, urls) => {
+      urls
+        .split(",")
+        .map((u) => u.trim())
+        .filter(Boolean)
+        .forEach((u) => images.push({ src: normSrc(u), alt: "" }));
+      return "";
+    }
   );
-};
 
-const CustomImage = ({ urls }) => {
-  const allUrls = urls.split(",");
+  body = body.replace(
+    /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g,
+    (_m, alt, src) => {
+      images.push({ src: normSrc(src), alt });
+      return "";
+    }
+  );
+
+  body = body.replace(/<img[^>]*?src=["']([^"']+)["'][^>]*?>/gi, (_m, src) => {
+    images.push({ src: normSrc(src), alt: "" });
+    return "";
+  });
+
+  return { body, images, embeds };
+}
+
+function cleanTitle(t) {
+  return t.replace(/[*_`#]/g, "").trim();
+}
+
+/* Split the cleaned body into collapsible sections by H1/H2 headings. */
+function splitSections(body) {
+  const lines = body.split("\n");
+  const sections = [];
+  let current = { title: "Overview", lines: [] };
+
+  for (const line of lines) {
+    const m = line.match(/^(#{1,2})\s+(.*)$/);
+    if (m) {
+      sections.push(current);
+      current = { title: cleanTitle(m[2]) || "Section", lines: [] };
+    } else {
+      current.lines.push(line);
+    }
+  }
+  sections.push(current);
+
+  return sections
+    .map((s) => ({ title: s.title, md: s.lines.join("\n").trim() }))
+    .filter((s) => s.md.length > 0)
+    .filter((s) => !/table of contents/i.test(s.title));
+}
+
+function dedupeImages(images) {
+  const seen = new Set();
+  return images.filter((img) => {
+    if (!img.src || seen.has(img.src)) return false;
+    seen.add(img.src);
+    return true;
+  });
+}
+
+const PostPage = (props) => {
+  const { tech, slug } = props.params;
+  const { data, content } = getProjectContent(tech + "/" + slug);
+
+  const { body, images, embeds } = extractMedia(content);
+  const sections = splitSections(body);
+
+  // Banner leads the gallery.
+  const allImages = dedupeImages(
+    data.bannerImage ? [{ src: normSrc(data.bannerImage), alt: data.title }, ...images] : images
+  );
+
   return (
-    <div className="w-full">
-      {urls === "" ? (
-        <></>
-      ) : (
-        <Tabs defaultValue={allUrls[0]} className="w-full flex flex-col">
-          <TabsList className="order-2 sm:flex sm:flex-row">
-            {allUrls &&
-              allUrls.map((item, i) => {
-                return (
-                  <TabsTrigger
-                    value={item}
-                    key={i}
-                    className="p-0  data-[state=active]:m-0 data-[state=active]:rounded-none"
-                  >
-                    <Image
-                      src={item}
-                      width={100}
-                      height={100}
-                      className="lg:m-2 sm:m-1"
-                    />
-                  </TabsTrigger>
-                );
-              })}
-          </TabsList>
-          <div className="order-1">
-            {allUrls &&
-              allUrls.map((item, i) => {
-                return (
-                  <TabsContent value={item} key={i}>
-                    <Image
-                      src={item}
-                      width={300}
-                      height={300}
-                      className="w-full"
-                    />
-                  </TabsContent>
-                );
-              })}
-          </div>
-        </Tabs>
-      )}
-    </div>
+    <ProjectDetail
+      data={data}
+      tech={tech}
+      sections={sections}
+      images={allImages}
+      embeds={embeds}
+    />
   );
 };
 

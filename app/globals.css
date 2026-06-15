@@ -1,103 +1,145 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 @layer base {
-  html {
-   font-family: "Poppins", sans-serif;
-  }
-  
   :root {
-    
-    --background: 0 0% 98%;
-    --foreground: 222.2 84% 4.9%;
+    /* ---- Editorial-minimal palette ---- */
+    --paper: #f4f1ea;       /* warm paper canvas */
+    --surface: #fcfbf7;     /* cards / raised */
+    --ink: #1b1a17;         /* near-black text */
+    --ink-soft: #6f6c62;    /* muted text */
+    --line: #e7e2d6;        /* hairline borders */
+    --brand: #d83a17;       /* vermilion accent */
+    --brand-ink: #fdf7f3;   /* text on accent */
 
-    --container-color: 0 0% 100%;;
+    /* shadcn token bridge (HSL triplets) */
+    --background: 44 33% 94%;
+    --foreground: 45 8% 10%;
+    --container-color: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
- 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
- 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
- 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
- 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --card: 48 45% 98%;
+    --card-foreground: 45 8% 10%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
- 
+    --popover: 48 45% 98%;
+    --popover-foreground: 45 8% 10%;
+
+    --primary: 45 8% 10%;
+    --primary-foreground: 44 33% 94%;
+
+    --secondary: 43 24% 89%;
+    --secondary-foreground: 45 8% 10%;
+
+    --muted: 43 24% 90%;
+    --muted-foreground: 46 6% 41%;
+
+    --accent: 43 24% 89%;
+    --accent-foreground: 45 8% 10%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 42 27% 87%;
+    --input: 42 27% 87%;
+    --ring: 12 82% 47%;
+
     --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
- 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
- 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
- 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
- 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
- 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+
+    /* Legacy tokens consumed by component-level CSS (contact/qualification) */
+    --title-color: var(--ink);
+    --title-color-dark: #000;
+    --text-color: var(--ink-soft);
+    --body-color: var(--paper);
+
+    --big-font-size: 3rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --title-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+    --tiny-font-size: 0.625rem;
+
+    --font-medium: 500;
+    --font-weight: 600;
+
+    --mb-0-25: 0.25rem;
+    --mb-0-5: 0.5rem;
+    --mb-0-75: 0.75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+
+    --header-height: 4rem;
+    --z-tooltip: 10;
+    --z-modal: 100;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-paper text-ink font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  .section{
-    @apply container mx-auto  h-fit flex flex-col pt-0 items-center justify-self-center
+  ::selection {
+    background: var(--brand);
+    color: var(--brand-ink);
   }
 
-  .head_title{
-    @apply text-4xl text-title font-semibold mb-4
+  h1, h2, h3 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Consistent section rhythm + anchor offset for the sticky nav */
+  .section {
+    @apply relative mx-auto flex w-full max-w-6xl flex-col px-6 py-20 md:px-10 md:py-28;
+    scroll-margin-top: 6rem;
   }
 
-  .head_subtitle{
-    @apply text-textColor
+  /* Mono eyebrow label above a section title */
+  .kicker {
+    @apply mb-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-brand;
   }
 
-  .hero-text{
-    @apply text-redColor
+  .head_title {
+    @apply font-display text-4xl font-medium leading-[1.05] tracking-tight text-ink md:text-5xl;
   }
 
-  
+  .head_subtitle {
+    @apply mt-3 max-w-xl text-base leading-relaxed text-inkSoft;
+  }
+
+  .hero-text {
+    @apply text-brand;
+  }
+
+  /* Reusable surface card */
+  .card-surface {
+    @apply rounded-2xl border border-line bg-surface;
+  }
+
+  /* Animated underline for inline / nav links */
+  .link-underline {
+    @apply relative text-inkSoft transition-colors duration-200 hover:text-ink;
+  }
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-px w-0 bg-ink transition-all duration-300;
+  }
+  .link-underline:hover::after {
+    @apply w-full;
+  }
 }

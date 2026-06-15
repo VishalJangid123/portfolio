@@ -3,6 +3,7 @@ title: "Opposites"
 subtitle: "A unique cooperative puzzle platformer that will test your coordination"
 date: "October 24th 2023"
 tags: ["Unity", "C#", "2D", "1-bit", "game-jam"]
+highlight: "Ranked #43 / 312 · 1-BIT Game Jam"
 bannerImage: "/Images/Opposite_level_4.png"
 social: [{ name : "github", link: "https://github.com/VishalJangid123/cube-coordination"}, ]
 ---

@@ -2,7 +2,8 @@
 title: "ImageSwift"
 subtitle: "Simplifies the process of loading and downloading images in Unity projects."
 date: "December 24th 2023"
-tags: ["Unity Editor Tools", "Library"]
+tags: ["Unity Editor Tools", "C#", "Library"]
+highlight: "316+ downloads · Unity Asset Store"
 bannerImage: "/Images/ImageSwift_cover.png"
 build_platform: {name : "Package", icon: "box"}
 social: [{ name : "youtube", link: "https://www.youtube.com/playlist?list=PLW-soixwRT10ffa_zkwpLd4kIwVQtBJDd"},

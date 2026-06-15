@@ -2,7 +2,7 @@
 title: "GoWhere"
 subtitle: "A mobile app about discovering, creating, and managing local events"
 date: "Jan 12, 2025"
-tags: ["React Native", "NodeJS", "Expo Router", "MongoDB"]
+tags: ["React Native", "TypeScript", "Expo Router", "Node.js", "MongoDB", "Redux", "JWT"]
 bannerImage: "/Images/GoWhere.png"
 build_platform: {name : "Mobile App", icon: "mobile-android"}
 social: [{ name : "github", link: "https://github.com/VishalJangid123/GoWhere?portfolio"}]

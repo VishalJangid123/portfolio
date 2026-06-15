@@ -2,7 +2,7 @@
 title: "Card Management App"
 subtitle: "Mobile app that integrates with the Omise Payment Gateway to allow users to make payments using their credit cards."
 date: "Jan 12, 2025"
-tags: ["React Native", "NodeJS", "Expo Router", "MongoDB"]
+tags: ["React Native", "TypeScript", "Node.js", "MongoDB", "Socket.io", "RabbitMQ", "Docker"]
 bannerImage: "/Images/CardManagementApp.png"
 build_platform: {name : "Mobile App", icon: "mobile-android"}
 social: [{ name : "github", link: "https://github.com/VishalJangid123/GoWhere?portfolio"}]

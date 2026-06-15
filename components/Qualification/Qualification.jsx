@@ -1,193 +1,208 @@
+'use client'
+
 import React, { useState } from 'react'
-import "./qualification.css"
+import { GraduationCap, Briefcase, Laptop } from 'lucide-react'
+
+const education = [
+  {
+    title: "Master of Engineering — Computer Engineering",
+    place: "Thammasat University, Faculty of Engineering",
+    location: "Rangsit, Thailand",
+    date: "2021 — 2025",
+    points: [
+      "GPA 3.9",
+      "Research in VR & 3D visualization for heritage and structural inspection",
+    ],
+    papers: [
+      { year: "2021", title: "Fishtank Sandbox — ACM VRST" },
+      { year: "2023", title: "Dam inspection (CNN-FCN) — SHM" },
+      { year: "2025", title: "Heritage Fish Tank VR — GEOMATE Journal" },
+    ],
+  },
+  {
+    title: "Bachelor of Technology — Computer Science",
+    place: "BK Birla Institute of Engineering & Technology",
+    location: "Pilani, India",
+    date: "2015 — 2019",
+  },
+];
+
+const experience = [
+  {
+    title: "Full-Stack Developer",
+    place: "AllEvents.in",
+    location: "Gujarat, India",
+    date: "Mar 2020 — Aug 2020",
+    points: [
+      "Built and maintained backend logic and new APIs in PHP",
+      "Developed dynamic, responsive UIs with AngularJS and ReactJS",
+      "Participated in code reviews, following team best practices",
+    ],
+  },
+  {
+    title: "Unity Developer",
+    place: "Sufalam Technologies",
+    location: "Gujarat, India",
+    date: "Aug 2019 — Oct 2019",
+    points: [
+      "Built a VR rhythm game for Oculus Quest with music sync and motion tracking",
+      "Implemented rhythm gameplay, visual effects, and haptic feedback",
+      "Contributed to a carnival-simulation VR game with interactive physics",
+    ],
+  },
+  {
+    title: "Software Engineer",
+    place: "NewGenApps",
+    location: "India",
+    date: "Jan 2019 — Feb 2019",
+  },
+  {
+    title: "Research-Based Internship",
+    place: "Thammasat University",
+    location: "Rangsit, Thailand",
+    date: "Sep 2018 — Oct 2018",
+    points: [
+      "Converted point-cloud data into 3D models using MeshLab",
+      "Built voice-controlled VR visualization of Thai historic temples (Oculus Go)",
+    ],
+  },
+];
+
+// Anonymized client engagements (undated — details under NDA). Same timeline shape.
+const freelance = [
+  {
+    title: "Metaverse Multiplayer Application",
+    place: "Unity Developer · Unity, Mirror, AWS Lightsail",
+    points: [
+      "Real-time public/private chat; interest management scaled to 100 concurrent users",
+      "AWS Lightsail migration cut CPU 76% → 20%; build trimmed 8 GB → 6 GB",
+      "macOS code-signing & notarization; async REST integration",
+    ],
+  },
+  {
+    title: "iOS SDK",
+    place: "Lead / Unity Developer · Unity, CMake, iOS",
+    points: [
+      "Led Windows/macOS → iOS migration of the core product",
+      "Tuned touch interactions and performance for iPad & iPhone",
+    ],
+  },
+  {
+    title: "Gamified Language Learning Application",
+    place: "Unity Developer · Unity, REST",
+    points: [
+      "Gameplay mechanics to enhance language learning",
+      "Async REST data flows; build / sign / deploy across test & production",
+    ],
+  },
+  {
+    title: "3D NFT Editor & Viewer",
+    place: "Unity Developer · Unity, 3D",
+    points: [
+      "Artists import 3D models, tune lighting/textures, and save 3D NFTs to a backend",
+      "UI/UX collaboration on the editor interface",
+    ],
+  },
+  {
+    title: "3D Museum Exhibition",
+    place: "Unity Developer · Unity, 3D",
+    points: [
+      "Immersive holographic artifact viewer for museums",
+      "Optimized 3D models & rendering to reduce build size",
+    ],
+  },
+];
+
+const Timeline = ({ items }) => (
+  <ol className="relative ml-3 border-l border-line">
+    {items.map((item, i) => (
+      <li key={i} className="relative pb-10 pl-8 last:pb-0">
+        <span className="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-brand bg-paper" />
+        {(item.date || item.location) && (
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs uppercase tracking-wider text-inkSoft">
+            {item.date && <span>{item.date}</span>}
+            {item.date && item.location && <span className="text-line">·</span>}
+            {item.location && <span>{item.location}</span>}
+          </div>
+        )}
+        <h3 className="mt-1.5 font-display text-xl font-medium text-ink">
+          {item.title}
+        </h3>
+        {item.place && <p className="mt-0.5 text-sm text-inkSoft">{item.place}</p>}
+        {item.points?.length > 0 && (
+          <ul className="mt-3 flex flex-col gap-1.5">
+            {item.points.map((pt, j) => (
+              <li key={j} className="flex gap-2.5 text-sm leading-relaxed text-inkSoft">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand" />
+                {pt}
+              </li>
+            ))}
+          </ul>
+        )}
+        {item.papers?.length > 0 && (
+          <div className="mt-4 rounded-xl border border-line bg-surface p-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-inkSoft">
+              Published during this time
+            </p>
+            <ul className="mt-2.5 flex flex-col gap-2">
+              {item.papers.map((p, j) => (
+                <li key={j} className="flex items-baseline gap-3 text-sm">
+                  <span className="shrink-0 font-mono text-xs text-brand">{p.year}</span>
+                  <span className="text-ink">{p.title}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </li>
+    ))}
+  </ol>
+);
+
+const TABS = {
+  education,
+  experience,
+  freelance,
+};
 
 const Qualification = () => {
-    const [toggleState, setToggleState] = useState(1);
+  const [tab, setTab] = useState("education");
 
-    const toggleTab = (index) => {
-        setToggleState(index);
-    };
+  const tabBtn = (id, label, Icon) => {
+    const activeTab = tab === id;
+    return (
+      <button
+        type="button"
+        onClick={() => setTab(id)}
+        className={`inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-colors ${
+          activeTab
+            ? "border-ink bg-ink text-paper"
+            : "border-line text-inkSoft hover:border-ink hover:text-ink"
+        }`}
+      >
+        <Icon size={16} />
+        {label}
+      </button>
+    );
+  };
 
   return (
-    <section className="qualification section">
-        <h2 className="section__title">Qualification</h2>
-        <span className="section__subtitle">My acdemic & work journey</span>
+    <section className="section" id="qualification">
+      <span className="kicker">
+        <span className="font-mono">04</span> / Journey
+      </span>
+      <h2 className="head_title">Where I’ve studied & worked.</h2>
+      <p className="head_subtitle">My education, experience, and other projects.</p>
 
+      <div className="mt-10 flex flex-wrap gap-3">
+        {tabBtn("education", "Education", GraduationCap)}
+        {tabBtn("experience", "Experience", Briefcase)}
+        {tabBtn("freelance", "Other Projects", Laptop)}
+      </div>
 
-<div className="qualification__container container">
-    <div className="qualification__tabs">
-        <div className={
-            toggleState === 1
-            ? "qualification__button qualification__active button--flex"
-            : "qualification__button button--flex"
-        }
-        onClick={() => toggleTab(1)}
-        >
-            <i className="uil uil-graduation-cap qualification__icon"></i> Education
-        </div>
-
-        <div className={
-            toggleState === 2
-            ? "qualification__button qualification__active button--flex"
-            : "qualification__button button--flex"
-        }
-        onClick={() => toggleTab(2)}
-        >
-            <i className="uil uil-briefcase-alt qualification__icon"></i> Experience
-        </div>
-
-    </div>
-
-<div className="qualification__section">
-    <div className={toggleState === 1 ?
-            "qualification__content qualification__content-active"
-        : "qualification__content"}>
-        <div className="qualification__data">
-        
-        <div>
-            <h3 className="qualification__title">Master of Engineering</h3>
-            <span className="qualification__subtitle"> Thammasat University </span>
-            <div className="qualification__calender">
-                <i className="uil uil-calendar-alt"></i> 2021 - Present
-            </div>
-        </div>
-
-            <div>
-        <span className="qualification__rounder"></span>
-        <span className="qualification__line"></span>
-        </div>
-        </div>
-
-
-        <div className="qualification__data">
-
-        <div></div>
-
-        <div>
-        <span className="qualification__rounder"></span>
-        <span className="qualification__line"></span>
-        </div>
-
-        <div>
-            <h3 className="qualification__title">Bachelor of Technology</h3>
-            <span className="qualification__subtitle"> BK Birla Institute of Engineering & Technology </span>
-            <div className="qualification__calender">
-                <i className="uil uil-calendar-alt"></i> 2015- 2019
-            </div>
-            </div>
-        </div>
-
-        <div className="qualification__data">
-        
-        <div>
-            <h3 className="qualification__title">High School</h3>
-            <span className="qualification__subtitle"> H G International School </span>
-            <div className="qualification__calender">
-                <i className="uil uil-calendar-alt"></i> 2015
-            </div>
-        </div>
-
-            <div>
-        <span className="qualification__rounder"></span>
-        <span className="qualification__line"></span>
-        </div>
-        </div>
-
-       
-
-    </div>
-
-
-
-
-
-    {/* work section here */}
-    <div className={toggleState === 2 ?
-            "qualification__content qualification__content-active"
-        : "qualification__content"}>
-        <div className="qualification__data">
-        <div>
-            <h3 className="qualification__title">FullStack Developer </h3>
-            <span className="qualification__subtitle"> AllEvents.in </span>
-            <div className="qualification__calender">
-                <i className="uil uil-calendar-alt"></i> Mar 2020 - Aug 2020
-            </div>
-            </div>
-
-            <div>
-        <span className="qualification__rounder"></span>
-        <span className="qualification__line"></span>
-        </div>
-        </div>
-
-
-        <div className="qualification__data">
-
-        <div></div>
-
-        <div>
-        <span className="qualification__rounder"></span>
-        <span className="qualification__line"></span>
-        </div>
-
-        <div>
-            <h3 className="qualification__title">VR Unity Developer</h3>
-            <span className="qualification__subtitle"> Sufalam Technologies </span>
-            <div className="qualification__calender">
-                <i className="uil uil-calendar-alt"></i> Aug 2019 - Oct 2019
-            </div>
-            </div>
-        </div>
-
-
-
-        <div className="qualification__data">
-        <div>
-            <h3 className="qualification__title">Software Engineer </h3>
-            <span className="qualification__subtitle"> NewGenApps </span>
-            <div className="qualification__calender">
-                <i className="uil uil-calendar-alt"></i>Jan 2019 - Feb 2019
-            </div>
-            </div>
-
-            <div>
-        <span className="qualification__rounder"></span>
-        <span className="qualification__line"></span>
-        </div>
-        </div>
-
-        <div className="qualification__data">
-
-        <div></div>
-
-        <div>
-        <span className="qualification__rounder"></span>
-        <span className="qualification__line"></span>
-        </div>
-
-        <div>
-            <h3 className="qualification__title">Research-based Internship</h3>
-            <span className="qualification__subtitle"> Thammasat University </span>
-            <div className="qualification__calender">
-                <i className="uil uil-calendar-alt"></i> Sep 2018 - Oct 2018
-            </div>
-            </div>
-        </div>
-       
-
-    </div>
-
-
-
-
-
-
-{/* end here */}
-    
-</div>
-
-</div>
-
+      <div className="mt-12 max-w-2xl">
+        <Timeline items={TABS[tab]} />
+      </div>
     </section>
   )
 }
