@@ -207,7 +207,8 @@ const Qualification = () => {
       <div className="mt-10 flex flex-wrap gap-3">
         {tabBtn("education", "Education", GraduationCap)}
         {tabBtn("experience", "Experience", Briefcase)}
-        {tabBtn("freelance", "Other Projects", Laptop)}
+        {/* Temporarily hidden — re-enable to show: */}
+        {/* {tabBtn("freelance", "Other Projects", Laptop)} */}
       </div>
 
       <div className="mt-12 max-w-2xl">
